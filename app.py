@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify,render_template,redirect,url_for
 import requests
 from dotenv import load_dotenv
 import os
+import functions as f
+import json
 
 app = Flask(__name__)
 
@@ -21,9 +23,18 @@ def make_request():
         interval = request.form.get("interval")
         url = f'https://www.alphavantage.co/query?function={function}&symbol={symbol}&interval={interval}&apikey={API_KEY}'
         response = requests.get(url)
-        return response.json()
+        data = response.json()
+        return redirect(url_for('result', data=json.dumps(data)))
     except Exception as e:
         return str(e)
+    
+@app.route('/result')
+def result():
+    data = request.args.get('data')
+    if data:
+        data = json.loads(data)  # Parse the JSON string into a dictionary
+    simplified_data = f.simplify_data(data)
+    return render_template('results.html', data=simplified_data)
         
 
 if __name__ == '__main__':
