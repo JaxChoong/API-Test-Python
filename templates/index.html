@@ -9,6 +9,11 @@
 </head>
 <body>
     <div>
+        {% if error %}
+            <div  class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
         <form action="/request" method="post">
             <input type="text" name="function" placeholder="Function">
             <input type="text" name="symbol" placeholder="Symbol">

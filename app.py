@@ -13,7 +13,8 @@ API_KEY = os.getenv('API_KEY')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    error = request.args.get('error')
+    return render_template('index.html', error=error)
 
 @app.route('/request', methods=['POST'])
 def make_request():
@@ -24,6 +25,8 @@ def make_request():
         url = f'https://www.alphavantage.co/query?function={function}&symbol={symbol}&interval={interval}&apikey={API_KEY}'
         response = requests.get(url)
         data = response.json()
+        if data.get('Error Message'):
+            return redirect(url_for('index', error=data.get('Error Message')))
         return redirect(url_for('result', data=json.dumps(data)))
     except Exception as e:
         return str(e)
