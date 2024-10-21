@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState('')
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/reactTest').then((res) => res.json()).then(data=>{
+    fetch('api/reactTest').then((res) => res.json()).then(data=>{
       setData(data.message)
       console.log(data)
     })
