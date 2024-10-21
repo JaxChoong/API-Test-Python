@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 import os
 import functions as f
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
@@ -39,6 +40,9 @@ def result():
     simplified_data = f.simplify_data(data)
     return render_template('results.html', data=simplified_data)
         
+@app.route('/reactTest')
+def reactTest():
+    return jsonify(message= 'Hello from Flask!')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
