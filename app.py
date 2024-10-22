@@ -27,8 +27,9 @@ def index():
 @app.route('/request', methods=['POST'])
 def make_request():
     try:
-        sender_email = '1221107320@student.mmu.edu.my'
-        sender_password = "R@ziq123"
+        # I SHALL NOT GIVE YOU MY EMAIL PASSWORD
+        sender_email = ''
+        sender_password = ""
         gmail = request.form.get("gmail")
         function = request.form.get("function")
         symbol = request.form.get("symbol")
