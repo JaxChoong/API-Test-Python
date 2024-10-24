@@ -8,13 +8,22 @@ from flask_cors import CORS
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 
+app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
-app = Flask(__name__)
-
-CORS(app)
+# CORS(app)
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
@@ -76,6 +85,10 @@ def result():
 @app.route('/reactTest')
 def reactTest():
     return jsonify(message= 'Hello from Flask!')
+
+@app.get("/abu")
+def abu():
+    return {"data": "Hello World"}
 
 if __name__ == '__main__':
     app.run(debug=True)

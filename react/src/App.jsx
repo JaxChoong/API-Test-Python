@@ -7,9 +7,9 @@ function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState('')
   useEffect(() => {
-    fetch('api/reactTest').then((res) => res.json()).then(data=>{
-      setData(data.message)
-      console.log(data)
+    fetch('api/abu').then((res) => res.json()).then(data=>{
+      setData(data.data)
+      console.log(data.data)
     })
   }, [])
   return (
