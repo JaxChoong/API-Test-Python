@@ -28,11 +28,6 @@ load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
 
-@app.route('/')
-def index():
-    error = request.args.get('error')
-    return render_template('index.html', error=error)
-
 @app.route('/request', methods=['POST'])
 def make_request():
     try:
@@ -74,21 +69,11 @@ def make_request():
     except Exception as e:
         return str(e)
     
-@app.route('/result')
-def result():
-    data = request.args.get('data')
-    if data:
-        data = json.loads(data)  # Parse the JSON string into a dictionary
-    simplified_data = f.simplify_data(data)
-    return render_template('results.html', data=simplified_data)
-        
-@app.route('/reactTest')
-def reactTest():
-    return jsonify(message= 'Hello from Flask!')
 
 @app.get("/abu")
 def abu():
     return {"data": "Hello World"}
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=5000)
