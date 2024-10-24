@@ -23,7 +23,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-# CORS(app)
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
