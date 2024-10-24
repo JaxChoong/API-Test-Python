@@ -3,7 +3,7 @@ A web application to play around with API's in Python (and also to try integrati
 
 ## Usage Steps
 Since we are running a React frontend with a python API (in this case FastAPI), we need to start both and have them running at the same time.
-#### **YOU NEED 2 TERMINALS FOR THIS TO WORK**
+> **YOU NEED 2 TERMINALS FOR THIS TO WORK**
 ### Starting python API
 1. Type "uvicorn app:app --host localhost --port 5000 --reload" in terminal
 
