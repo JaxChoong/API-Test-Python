@@ -22,7 +22,14 @@ function App() {
         setData(data.data);
       });
   }
-
+  function getStocks(){
+    fetch('api/stocks')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data["Meta Data"]);
+        console.log(data);
+      });
+  }
   return (
     <>
       <div>
@@ -47,6 +54,8 @@ function App() {
       </p>
       <button onClick={() => setData( getAli())}>Ali</button>
       <button onClick={() => setData( getAbu())}>Abu</button>
+      <button onClick={() => setData( getStocks())}>Stocks</button>
+      <button onClick={() => setData('')}>Clear</button>
       <p>{data}</p>
     </>
   )

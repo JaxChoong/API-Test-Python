@@ -76,6 +76,13 @@ def abu():
 @app.get("/ali")
 def ali():
     return {"data": "Hello Ali"}
+
+@app.get("/stocks")
+def stocks():
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey={API_KEY}'
+    response = requests.get(url) 
+    return response.json()
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=5000)
