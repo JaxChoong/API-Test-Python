@@ -6,12 +6,23 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState('')
-  useEffect(() => {
-    fetch('api/abu').then((res) => res.json()).then(data=>{
-      setData(data.data)
-      console.log(data.data)
-    })
-  }, [])
+
+  function getAli() {
+    fetch('api/ali')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });
+  }
+
+  function getAbu() {
+    fetch('api/abu')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });
+  }
+
   return (
     <>
       <div>
@@ -33,8 +44,10 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-        {data}
       </p>
+      <button onClick={() => setData( getAli())}>Ali</button>
+      <button onClick={() => setData( getAbu())}>Abu</button>
+      <p>{data}</p>
     </>
   )
 }

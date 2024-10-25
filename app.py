@@ -71,8 +71,11 @@ def make_request():
 
 @app.get("/abu")
 def abu():
-    return {"data": "Hello World"}
+    return {"data": "Hello Abu"}
 
+@app.get("/ali")
+def ali():
+    return {"data": "Hello Ali"}
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=5000)
